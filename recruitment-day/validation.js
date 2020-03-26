@@ -25,17 +25,17 @@ var MyInput = class extends HTMLElement {
 
   // Handling 'keyup' events for both 'inputNLP and inputNP'.
   // Validation and also error output is shown.
-  handleKeyDown = (e) => {
-    const curInput = this.getCurInputProps(e);
+  handleKeyDown = (event) => {
+    const curInput = this.getCurInputProps(event);
     const errorStr = this.validate(curInput);
     curInput.elem.setCustomValidity(errorStr);
     curInput.elem.reportValidity();
   }
 
   // Getting currently selected input field's properties.
-  getCurInputProps(e) {
+  getCurInputProps = (event) => {
     let radioType;
-    if (e.target.id === 'inputNLP') {
+    if (event.target.id === 'inputNLP') {
       radioType = this.el.querySelector('[name=validation-NLP]:checked').value;
       return { elem: this.inputE1, radioType: radioType };
     }
@@ -46,7 +46,7 @@ var MyInput = class extends HTMLElement {
   }
 
   // On key-up validation for 'inputNLP and inputNP' elements using Regular Expressions.
-  validate(args) {
+  validate = (args) => {
     let radioType = args.radioType;
     let inputVal = args.elem.value;
     if (radioType === 'number') { // Numbers validation
@@ -67,9 +67,9 @@ var MyInput = class extends HTMLElement {
     return '';
   }
 
-  findConsecutiveNumbers(str) {
+  findConsecutiveNumbers = (str) => {
     // Checking for sequential numerical numbers.
-    for (var index in str)
+    for (let index in str)
       // "a123*", if index=1...if(2 === 2 && 3 === 3).
       if (+str[+index + 1] === +str[index] + 1 && +str[+index + 2] === +str[index] + 2) return true;
     return false;
