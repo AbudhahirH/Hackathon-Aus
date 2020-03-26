@@ -35,7 +35,7 @@ var MyInput = class extends HTMLElement {
   // Getting currently selected input field's properties.
   getCurInputProps(e) {
     let radioType;
-    if (e.target.id == 'inputNLP') {
+    if (e.target.id === 'inputNLP') {
       radioType = this.el.querySelector('[name=validation-NLP]:checked').value;
       return { elem: this.inputE1, radioType: radioType };
     }
@@ -70,10 +70,10 @@ var MyInput = class extends HTMLElement {
   findConsecutiveNumbers(str) {
     // Checking for sequential numerical numbers.
     for (var index in str)
-      // "a123*", if index=1...if(2 == 2 && 3 == 3).
-      if (+str[+index + 1] == +str[index] + 1 && +str[+index + 2] == +str[index] + 2) return true; 
+      // "a123*", if index=1...if(2 === 2 && 3 === 3).
+      if (+str[+index + 1] === +str[index] + 1 && +str[+index + 2] === +str[index] + 2) return true;
     return false;
   }
-  
+
 }
 customElements.define('my-input', MyInput);

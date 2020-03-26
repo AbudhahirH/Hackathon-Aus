@@ -63,7 +63,7 @@
     if (top < 0) top = 0;
     if (top > maxHeight) top = maxHeight;
     m.style.top = top + 'px';
-    
+
     if (left < 0) left = 0;
     if (left > maxWidth) left = maxWidth;
     m.style.left = left + 'px';
