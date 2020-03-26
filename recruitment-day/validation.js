@@ -69,9 +69,9 @@ var MyInput = class extends HTMLElement {
 
   findConsecutiveNumbers(str) {
     // Checking for sequential numerical numbers.
-    for (var i in str)
-      // "a123*", if i=1...if(2 == 2 && 3 == 3).
-      if (+str[+i + 1] == +str[i] + 1 && +str[+i + 2] == +str[i] + 2) return true; 
+    for (var index in str)
+      // "a123*", if index=1...if(2 == 2 && 3 == 3).
+      if (+str[+index + 1] == +str[index] + 1 && +str[+index + 2] == +str[index] + 2) return true; 
     return false;
   }
   
