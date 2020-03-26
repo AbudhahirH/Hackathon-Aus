@@ -13,17 +13,17 @@ var MyInput = class extends HTMLElement {
     this.el = this.attachShadow({ mode: 'open' });
     this.el.appendChild(templateContent.cloneNode(true));
 
-    this.inputE1 = this.el.querySelector('#input1');
-    this.inputE2 = this.el.querySelector('#input2');
+    this.inputE1 = this.el.querySelector('#inputNLP');
+    this.inputE2 = this.el.querySelector('#inputNP');
   }
 
-  // Subscribing 'keyup' events for both 'input1 and input2'.
+  // Subscribing 'keyup' events for both 'inputNLP and inputNP'.
   connectedCallback() {
     this.inputE1.addEventListener('keyup', this.handleKeyDown);
     this.inputE2.addEventListener('keyup', this.handleKeyDown);
   }
 
-  // Handling 'keyup' events for both 'input1 and input2'.
+  // Handling 'keyup' events for both 'inputNLP and inputNP'.
   // Validation and also error output is shown.
   handleKeyDown = (e) => {
     const curInput = this.getCurInputProps(e);
@@ -35,7 +35,7 @@ var MyInput = class extends HTMLElement {
   // Getting currently selected input field's properties.
   getCurInputProps(e) {
     let radioType;
-    if (e.target.id == 'input1') {
+    if (e.target.id == 'inputNLP') {
       radioType = this.el.querySelector('[name=validation-NLP]:checked').value;
       return { elem: this.inputE1, radioType: radioType };
     }
@@ -45,7 +45,7 @@ var MyInput = class extends HTMLElement {
     }
   }
 
-  // On key-up validation for 'input1 and input2' elements using Regular Expressions.
+  // On key-up validation for 'inputNLP and inputNP' elements using Regular Expressions.
   validate(args) {
     let radioType = args.radioType;
     let inputVal = args.elem.value;
