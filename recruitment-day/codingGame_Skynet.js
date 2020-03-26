@@ -11,19 +11,19 @@
   Get the first input
   (total number of nodes in the level, number of links, number of exit gateways)
  */
-var inputs = readline().split(' ');
-var N = parseInt(inputs[0]); // the total number of nodes in the level, including the gateways
-var L = parseInt(inputs[1]); // the number of links
-var E = parseInt(inputs[2]); // the number of exit gateways
-var nodes = {};
-var gateways = [];
+var inputs = readline().split(' '),
+    N = parseInt(inputs[0]), // the total number of nodes in the level, including the gateways
+    L = parseInt(inputs[1]), // the number of links
+    E = parseInt(inputs[2]), // the number of exit gateways
+    nodes = {},
+    gateways = [];
 console.error('inputs: ', inputs)
 
 // List the network
 for (let index = 0; index < L; index++) {
   inputs = readline().split(' ');
-  let N1 = parseInt(inputs[0]); // N1 and N2 defines a link between these nodes
-  let N2 = parseInt(inputs[1]);
+  let N1 = parseInt(inputs[0]), // N1 and N2 defines a link between these nodes
+      N2 = parseInt(inputs[1]);
   console.error('N1 N2: ', N1, N2)
 
   if (typeof nodes[N1] !== 'undefined') {
@@ -53,13 +53,13 @@ for (let index = 0; index < E; index++) {
   without running over several times on same nodes
  */
 searchGatewayInSkynet = (SI, path = []) => {
-  let result = [];
-  let skyNet = nodes[SI];
+  let result = [],
+      skyNet = nodes[SI];
   path.push(SI);
 
   for (let index in skyNet) {
-    let node = skyNet[index];
-    let predictPath = JSON.parse(JSON.stringify(path)); // JSON.stringify then JSON.parse to clone the object
+    let node = skyNet[index],
+        predictPath = JSON.parse(JSON.stringify(path)); // JSON.stringify then JSON.parse to clone the object
     if (gateways.indexOf(node) === -1 && path.indexOf(node) === -1) {
       let tmpResult = searchGatewayInSkynet(node, predictPath);
       result = result.concat(tmpResult);
@@ -84,7 +84,7 @@ getClosetGatewayPath = (SI) => {
 // game loop
 // Display the result in the standard output
 while (true) {
-  let SI = parseInt(readline()); // The index of the node on which the Skynet agent is positioned this turn
-  let result = getClosetGatewayPath(SI);
+  let SI = parseInt(readline()), // The index of the node on which the Skynet agent is positioned this turn
+      result = getClosetGatewayPath(SI);
   console.log(result[0] + ' ' + result[1]);
 }
