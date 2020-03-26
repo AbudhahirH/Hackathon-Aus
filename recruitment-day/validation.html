@@ -1,44 +1,72 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Validation</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="validation.js" defer></script>
-  </head>
-  <body>
-    <template id="my-input">
-      <style>
-        #input:invalid {
-          border: solid #F00 2px;
-        }
-      </style>
-      <h1><slot name="label">Label default text</slot></h1>
-      <div><input type="text" id="inputNLP"/></div>
-      <div>
-        <label>
-          <input type="radio" name="validation-NLP" value="number" checked/> Numbers
-        </label>
-        <label>
-          <input type="radio" name="validation-NLP" value="letter"/> Letters
-        </label>
-        <label>
-          <input type="radio" name="validation-NLP" value="password"/> Password
-        </label>
-      </div>
 
-      <div><input type="text" id="inputNP"/></div>
-      <div>
-        <label>
-          <input type="radio" name="validation-NP" value="number" checked/> Numbers
-        </label>
-        <label>
-          <input type="radio" name="validation-NP" value="password"/> Password
-        </label>
-      </div>
-    </template>
+<head>
+  <title>Validation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="validation.js" defer></script>
+  <style>
+    .heading {
+      font-size: 25px;
+    }
+  </style>
+</head>
 
-    <my-input>
-      <span slot="label">Validation:</span>
-    </my-input>
-  </body>
+<body>
+  <!-- Number, Letters and Password -->
+  <template id="my-input">
+    <style>
+      #input:invalid {
+        border: solid #F00 2px;
+      }
+    </style>
+    <h1>
+      <slot name="label">Label default text</slot>
+    </h1>
+    <div><input type="text" id="inputNLP" /></div>
+    <div>
+      <label>
+        <input type="radio" name="validation-NLP" value="number" checked /> Numbers
+      </label>
+      <label>
+        <input type="radio" name="validation-NLP" value="letter" /> Letters
+      </label>
+      <label>
+        <input type="radio" name="validation-NLP" value="password" /> Password
+      </label>
+    </div>
+  </template>
+
+  <!-- Number and Password -->
+  <template id="my-input-np">
+    <style>
+      #input:invalid {
+        border: solid #F00 2px;
+      }
+    </style>
+    <h1>
+      <slot name="label">Label default text</slot>
+    </h1>
+
+    <div><input type="text" id="inputNP" /></div>
+    <div>
+      <label>
+        <input type="radio" name="validation-NP" value="number" checked /> Numbers
+      </label>
+      <label>
+        <input type="radio" name="validation-NP" value="password" /> Password
+      </label>
+    </div>
+  </template>
+
+  <!-- Number, Letters and Password -->
+  <my-input>
+    <span class="heading" slot="label">Validation(NLP):</span>
+  </my-input>
+  <!-- Number and Password -->
+  <my-input-np>
+    <span class="heading" slot="label">Validation(NP):</span>
+  </my-input-np>
+</body>
+
 </html>
