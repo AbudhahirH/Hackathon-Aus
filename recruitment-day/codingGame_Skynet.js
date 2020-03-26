@@ -23,28 +23,16 @@ console.error('inputs: ', inputs)
 for (let index = 0; index < L; index++) {
   inputs = readline().split(' ');
   let N1 = parseInt(inputs[0]), // N1 and N2 defines a link between these nodes
-      N2 = parseInt(inputs[1]);
-  console.error('N1 N2: ', N1, N2)
-
-  if (typeof nodes[N1] !== 'undefined') {
-    nodes[N1].push(N2)
-  } else {
-    nodes[N1] = [N2];
-  }
-
-  if (typeof nodes[N2] !== 'undefined') {
-    nodes[N2].push(N1)
-  } else {
-    nodes[N2] = [N1];
-  }
-
-  console.error('nodes list', nodes);
+      N2 = parseInt(inputs[1]),
+      list_N1 = typeof nodes[N1] !== 'undefined' ? nodes[N1].push(N2) : nodes[N1] = [N2];
+      list_N2 = typeof nodes[N2] !== 'undefined' ? nodes[N2].push(N1) : nodes[N2] = [N1];
+  console.error('nodes list', nodes, list_N1, list_N2);
 }
 
 // List all the exit gateways
 for (let index = 0; index < E; index++) {
   let EI = parseInt(readline()); // the index of a gateway node
-  console.error('EI: ', EI)
+  console.error('EI: ', EI);
   gateways.push(EI);
 }
 
@@ -59,14 +47,13 @@ searchGatewayInSkynet = (SI, path = []) => {
 
   for (let index in skyNet) {
     let node = skyNet[index],
-        predictPath = JSON.parse(JSON.stringify(path)); // JSON.stringify then JSON.parse to clone the object
+      predictPath = JSON.parse(JSON.stringify(path)); // JSON.stringify then JSON.parse to clone the object
     if (gateways.indexOf(node) === -1 && path.indexOf(node) === -1) {
       let tmpResult = searchGatewayInSkynet(node, predictPath);
       result = result.concat(tmpResult);
     } else if (gateways.indexOf(node) !== -1) {
       predictPath.push(node); //
       console.error("predictPath", predictPath)
-
       result.push(predictPath);
     }
   }
